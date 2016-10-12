@@ -1,0 +1,60 @@
+* {
+    font-family: sans-serif;
+}
+
+form {
+    width: 600px;
+    text-align: right;
+}
+
+label {
+    background-color: white;
+}
+
+#wrapper {
+    height: auto;
+    width: 100%;
+    background-image: url(wall.jpg);
+}
+
+#topbar * {
+    display: inline-block;
+}
+
+#topbar h2 {
+    margin-left: 325px;
+}
+
+h1, h2 {
+    padding: 10px;
+    background-color: blue;
+    font-weight: bolder;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.message {
+    padding: 20px;
+    width: 1000px;
+    border: 1px solid black;
+    background-color: lightblue;
+    border-radius: 10px;
+}
+
+.comment {
+    padding: 20px;
+    width: 900px;
+    margin-left: 100px;
+    border: 1px solid gray;
+    background-color: lightgreen;
+    border-radius: 10px;
+}
+
+.postcomment {
+    margin-left: 100px;
+}
+
+.error {
+    font-size: 20px;
+    color: red;
+}

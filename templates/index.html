@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>Another brick in the...</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css' )}}">
+</head>
+<body>
+    <div id="wrapper">
+        <h1>Wall of Worthless Messages!</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="error">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% if session['login'] %}
+            <h1>You are logged in!</h1>
+        {% endif %}
+        <hr>
+        <h2>Login</h2>
+        <form action='/login' method='POST'>
+            <label for="loginemail">Email:<input type="text" name="loginemail" id="loginemail"></label><br>
+            <label for="loginpassword">Password:<input type="password" name="loginpassword" id="loginpassword"></label><br>
+            <input type="submit" value="Login">
+        </form>
+        <hr>
+        <h2>Register</h2>
+        <form action='/register' method='POST'>
+            <label for="first_name">First Name:<input type="text" name="first_name" id="first_name"></label><br>
+            <label for="last_name">Last Name:<input type="text" name="last_name" id="last_name"></label><br>
+            <label for="email">Email:<input type="text" name="email" id="email"></label><br>
+            <label for="passworda">Password:<input type="password" name="passworda" id="passworda"></label><br>
+            <label for="passwordb">Retype Password:<input type="password" name="passwordb" id="passwordb"></label><br>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title>Friends</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css' )}}">
+</head>
+<body>
+    <div id="wrapper">
+        <div id="topbar">
+            <h1>Wall of Worthless Messages!</h1>
+            <h2>Welcome {{ user[0]['first_name']}}</h2>
+            <a href="/logout"><button type="button" name="Logout">Log out</button></a>
+        </div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="error">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <h2>Post a message</h2>
+        <form class="postmessage" action="/postmessage" method="post">
+            <textarea name="message" id="message" rows="6" cols="100"></textarea><br>
+            <input type="submit" name="submessage" value="Submit Message">
+        </form>
+        <hr>
+        {% for message in all_messages: %}
+            <div class="message">
+                <h3>Message posted by {{ message['first_name'] }} {{ message['last_name'] }} on {{ message['created_at'] }}</h3>
+                <p>{{ message['message'] }}</p>
+                <hr>
+            </div>
+            {% for comment in all_comments %}
+                {% if message['id'] == comment['messages_id'] %}
+                    <div class="comment">
+                        <h4>Comment posted by {{ comment['first_name'] }} {{ comment['last_name'] }} on {{ comment['created_at'] }}</h4>
+                        <p>{{ comment['comment'] }}</p>
+                        <hr>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <form class="postcomment" action="/postcomment" method="post">
+                <input type="hidden" name="messages_id" value="{{ message['id'] }}">
+                <textarea name="comment" rows="6" cols="100"></textarea><br>
+                <input type="submit" name="subcomment" value="Submit Comment">
+            </form>
+        <hr>
+        {% endfor %}
+    </div>
+</body>
+</html>
