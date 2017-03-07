@@ -83,7 +83,6 @@ def message():
         'message': request.form['message'],
         'users_id': session['login']
     }
-    print data
     if len(data['message']) < 1:
         flash('Please enter a message.')
         return redirect('/wall')
